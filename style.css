@@ -8,3 +8,7 @@ th,
 tr {
   text-align: center;
 }
+.bts {
+  display: flex;
+  gap: 20px;
+}

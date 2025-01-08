@@ -1,6 +1,6 @@
 //limpar o formulario preenchido
 
-document.getElementById('clearButton').addEventListener('click', function () {
+function clearForm() {
+  document.getElementById('contactForm').reset(); // Limpa todos os campos do formulário
 
-  document.getElementById('contactForm').reset();
-});
+}
