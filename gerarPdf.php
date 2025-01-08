@@ -6,7 +6,7 @@
 
   $dompdf = new Dompdf();
 
-  $sqlPdf = "SELECT * FROM regionais";
+  $sqlPdf = "SELECT * FROM regionais ORDER BY regional";
   $result = $conexao->query($sqlPdf);
 
 
