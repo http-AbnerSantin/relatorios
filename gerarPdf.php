@@ -6,7 +6,9 @@
 
   $dompdf = new Dompdf();
 
-  $sqlPdf = "SELECT * FROM regionais ORDER BY regional";
+  $sqlPdf = "SELECT * 
+FROM regionais 
+ORDER BY CONVERT(regional, UNSIGNED);";
   $result = $conexao->query($sqlPdf);
 
 
@@ -51,6 +53,7 @@ th{
 <body>
   <h1>IGREJA EVANGELICA ASSEMBLEIA DE DEUS</h1>
   <h2>CAMPO 1. PR. RAUL CAVALCANTE BATISTA</h2>
+  <h3>Dezembro - 2024</h3>
   
   <table class='table table-striped'>
     <thead>
