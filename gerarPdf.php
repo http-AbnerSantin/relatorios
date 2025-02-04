@@ -6,9 +6,7 @@
 
   $dompdf = new Dompdf();
 
-  $sqlPdf = "SELECT * 
-FROM regionais 
-ORDER BY CONVERT(regional, UNSIGNED);";
+  $sqlPdf = "SELECT * FROM regionais ORDER BY CONVERT(regional, UNSIGNED);";
   $result = $conexao->query($sqlPdf);
 
 
@@ -20,10 +18,14 @@ ORDER BY CONVERT(regional, UNSIGNED);";
   <link rel='stylesheet' href='style.css'>
 </head>
 <style>
+* {
+font-family: sans-serif;
+}
 h1,
 h2,
-h3 {
+h3, h4 {
   font-family: sans-serif;
+    margin: 5px;
 }
 table {
   font-family: sans-serif;
@@ -33,7 +35,7 @@ table {
 th,
 td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 4px;
   font-size: 12px;
 }
 th{
@@ -49,11 +51,24 @@ th{
 .text-center {
   text-align: center;
 }
+
+.table>:not(caption)>*>* {
+    padding:0.3rem;
+}
+
+
+  .cabecalho span {
+    margin: 0px 0px 0px 87%;
+  }
 </style>
 <body>
-  <h1>IGREJA EVANGELICA ASSEMBLEIA DE DEUS</h1>
-  <h2>CAMPO 1. PR. RAUL CAVALCANTE BATISTA</h2>
-  <h3>Dezembro - 2024</h3>
+
+  <h3 class='cabecalho'>IGREJA EVANGELICA ASSEMBLEIA DE DEUS <span>Janeiro - 2025</span></h3>
+ 
+
+
+  <h4>CAMPO 1. PR. RAUL CAVALCANTE BATISTA</h4>
+  
   
   <table class='table table-striped'>
     <thead>
@@ -69,7 +84,7 @@ th{
         <th scope='col'>VISITA NOS HOSPITAIS</th>
         <th scope='col'>MULHERES DA BIBLIA</th>
         <th scope='col'>TRABALHOS EVANGELÍSTICOS</th>
-        <th scope='col'>OFERTAS</th>
+        <th scope='col'>OFERTAS R$</th>
       </tr>
     </thead>
     <tbody>";
@@ -87,7 +102,7 @@ th{
       $html .= "<td>" . $dados['visita_hospitais'] . "</td>";
       $html .= "<td>" . $dados['mulheres_biblia'] . "</td>";
       $html .= "<td>" . $dados['trabalho_evangelistico'] . "</td>";
-      $html .= "<td>R$" . number_format($dados['oferta'], 2, ',','. ') . "</td>";
+      $html .= "<td>" . number_format($dados['oferta'], 2, ',','. ') . "</td>";
       $html .= "</tr>";
 
     }
@@ -122,14 +137,16 @@ th{
             $html .= "<td class='bold-text'>" . $fetch['total_vnh'] . "</td>";
             $html .= "<td class='bold-text'>" . $fetch['total_mdb'] . "</td>";
             $html .= "<td class='bold-text'>" . $fetch['total_te'] . "</td>";
-            $html .= "<td class='bold-text'>R$" .  number_format($fetch['total_ofertas'], 2, ',','. ') . "</td>";
+            $html .= "<td class='bold-text'>" .  number_format($fetch['total_ofertas'], 2, ',','. ') . "</td>";
             $html .= "</tr>";
         } 
     $html .= "</tbody>";
   
-  $html .="</table></body>";
+  $html .="</table>
+    <h3>Oferta total: R$".number_format($fetch['total_ofertas'], 2, ',','. ')."</h3>
+</body>";
 
-    // echo $html;
+  // echo $html;
 
   $dompdf->loadHtml($html);
   
