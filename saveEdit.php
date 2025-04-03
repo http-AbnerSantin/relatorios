@@ -3,6 +3,8 @@
 
   if (isset($_POST['update'])) {
     // Captura os dados do formulário
+
+    
     $id = $_POST['id'];
     $regional = $_POST['regional'];
     $cultos = $_POST['cultos'];
@@ -16,6 +18,7 @@
     $mulheres_biblia = $_POST['mulheres_biblia'];
     $trabalho_evangelistico = $_POST['trabalho_evangelistico'];
     $oferta = $_POST['oferta'];
+    $mes = $_POST['mes'];
 
     // Realiza a atualização no banco de dados
     $sqlUpdate = "UPDATE regionais SET  
@@ -30,7 +33,8 @@
       visita_hospitais = '$visita_hospitais',
       mulheres_biblia = '$mulheres_biblia',
       trabalho_evangelistico = '$trabalho_evangelistico',
-      oferta = '$oferta'
+      oferta = '$oferta',
+      mes = '$mes'
       WHERE id = '$id'";
 
     $result = $conexao->query($sqlUpdate);

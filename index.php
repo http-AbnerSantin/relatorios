@@ -16,10 +16,11 @@
     $mulheres_biblia = $_POST['mulheres_biblia'];
     $trabalho_evangelistico = $_POST['trabalho_evangelistico'];
     $oferta = $_POST['oferta'];
+    $mes = $_POST['mes'];
 
     // Inserindo dados no banco
-    $result = mysqli_query($conexao, "INSERT INTO regionais (regional, cultos, decisoes, reconciliacoes, batismo_com_espirito_santo, curas, libertacao, visita_louvor_testemunho, visita_hospitais, mulheres_biblia, trabalho_evangelistico, oferta) 
-                                      VALUES ('$regional', '$cultos', '$decisoes', '$reconciliacoes', '$batismo_com_espirito_santo', '$curas', '$libertacao', '$visita_louvor_testemunho', '$visita_hospitais', '$mulheres_biblia', '$trabalho_evangelistico', '$oferta')");
+    $result = mysqli_query($conexao, "INSERT INTO regionais (regional, cultos, decisoes, reconciliacoes, batismo_com_espirito_santo, curas, libertacao, visita_louvor_testemunho, visita_hospitais, mulheres_biblia, trabalho_evangelistico, oferta, mes) 
+                                      VALUES ('$regional', '$cultos', '$decisoes', '$reconciliacoes', '$batismo_com_espirito_santo', '$curas', '$libertacao', '$visita_louvor_testemunho', '$visita_hospitais', '$mulheres_biblia', '$trabalho_evangelistico', '$oferta', '$mes')");
 
     // Redireciona para evitar reenvio de dados ao atualizar a página
     header('Location: index.php');
@@ -52,7 +53,7 @@
                     <div class="mb-4">
                         <label for="regional" class="block text-sm font-medium text-gray-600">REGIONAL</label>
                         <input type="text" id="regional" name="regional" placeholder="Numero da Regional"
-                            class="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            class="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" >
                     </div>
                     <div class="mb-4">
                         <label for="cultos" class="block text-sm font-medium text-gray-600">CULTOS</label>
@@ -109,6 +110,11 @@
                         <input type="text" id="oferta" name="oferta" placeholder="R$"
                             class="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
+                    <div class="mb-4">
+                        <label for="mes" class="block text-sm font-medium text-gray-600">MES</label>
+                        <input type="text" id="mes" name="mes" placeholder=""
+                            class="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
 
                 </div>
                 <div class="mb-4 flex flex-col gap-2">
@@ -159,6 +165,8 @@
                 <th class="px-6 py-3 text-left font-medium text-sm uppercase">MULHERES DA BÍBLIA</th>
                 <th class="px-6 py-3 text-left font-medium text-sm uppercase">TRABALHOS EVANGELÍSTICOS</th>
                 <th class="px-6 py-3 text-left font-medium text-sm uppercase">OFERTA</th>
+                <th class="px-6 py-3 text-left font-medium text-sm uppercase">MÊS</th>
+
                 
                 
             </tr>
@@ -191,6 +199,8 @@
                         echo "<td class='px-6 py-4 text-sm text-gray-700'>" . $row['mulheres_biblia'] . "</td>";
                         echo "<td class='px-6 py-4 text-sm text-gray-700'>" . $row['trabalho_evangelistico'] . "</td>";
                         echo "<td class='px-6 py-4 text-sm text-gray-700'>" . $row['oferta'] . "</td>";
+                        echo "<td class='px-6 py-4 text-sm text-gray-700'>" . $row['mes'] . "</td>";
+
                         
                         
 

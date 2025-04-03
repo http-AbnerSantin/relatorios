@@ -26,6 +26,7 @@
         $mulheres_biblia = $listagem['mulheres_biblia'];
         $trabalho_evangelistico = $listagem['trabalho_evangelistico'];
         $oferta = $listagem['oferta'];
+        $mes = $listagem['mes'];
       }
       
 
@@ -114,6 +115,11 @@
                     <div class="mb-4">
                         <label for="oferta" class="block text-sm font-medium text-gray-600">OFERTA</label>
                         <input type="text" id="oferta" name="oferta" placeholder="R$" value="<?= $oferta?>"
+                            class="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="mes" class="block text-sm font-medium text-gray-600">MÊS</label>
+                        <input type="text" id="mes" name="mes" placeholder="R$" value="<?= $mes?>"
                             class="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
 
