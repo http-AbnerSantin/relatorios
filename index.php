@@ -1,7 +1,17 @@
 <?php
 // Verifica se o formulário foi enviado (somente executa se for uma requisição POST)
+include_once('config.php');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include_once('config.php');
+    // Lista de campos obrigatórios
+    $camposObrigatorios = ['cultos', 'decisoes', 'reconciliacoes', 'batismo_com_espirito_santo', 'curas', 'libertacao', 'visita_louvor_testemunho', 'visita_hospitais', 'mulheres_biblia', 'trabalho_evangelistico', 'oferta', 'mes'];
+
+    // Valida os campos obrigatórios
+    foreach ($camposObrigatorios as $campo) {
+        if (!isset($_POST[$campo]) || $_POST[$campo] === '') {
+            die("Erro: campo obrigatório '$campo' não foi enviado.");
+        }
+    }
 
     // Captura os dados do formulário com segurança
     $regional = $_POST['regional'] ?? NULL;
@@ -15,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $visita_hospitais = $_POST['visita_hospitais'];
     $mulheres_biblia = $_POST['mulheres_biblia'];
     $trabalho_evangelistico = $_POST['trabalho_evangelistico'];
-    $mes = $_POST['mes'];
     $oferta = $_POST['oferta']; // Exemplo: "12,34" (string com vírgula)
+    $mes = $_POST['mes'];
 
     // Substitui vírgula por ponto e converte para float
     $oferta_float = str_replace(',', '.', $oferta);
@@ -33,9 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Buscando dados do banco
-include_once('config.php');
 $sqlListagem = "SELECT * FROM regionais ORDER BY regional ";
 $listagem = $conexao->query($sqlListagem);
+
+$sqlDescricao = "SELECT descricao FROM regional";
+$descricao = $conexao->query($sqlDescricao);
 ?>
 
 <!DOCTYPE html>
@@ -59,8 +71,10 @@ $listagem = $conexao->query($sqlListagem);
                     <!-- Campos do formulário -->
                     <div class="mb-4">
                         <label for="regional" class="block text-sm font-medium text-gray-600">REGIONAL</label>
-                        <input type="text" id="regional" name="regional" placeholder="Numero da Regional"
-                            class="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <input type="text" name="regional" id="regional"  class="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </input>
+                        <!-- <input type="text" id="regional" name="regional" placeholder="Numero da Regional"
+                            class="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500"> -->
                     </div>
                     <div class="mb-4">
                         <label for="cultos" class="block text-sm font-medium text-gray-600">CULTOS</label>
@@ -119,7 +133,7 @@ $listagem = $conexao->query($sqlListagem);
                     </div>
                     <div class="mb-4">
                         <label for="mes" class="block text-sm font-medium text-gray-600">MES</label>
-                        <input type="text" id="mes" name="mes" placeholder=""
+                        <input type="text" id="mes" name="mes" placeholder="MÊS"
                             class="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
 

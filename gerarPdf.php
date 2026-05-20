@@ -14,7 +14,8 @@ $meses = [
     '9' => 'Set', '10' => 'Out', '11' => 'Nov', '12' => 'Dez'
 ];
 
-$sqlPdf = "SELECT * FROM regionais ORDER BY CAST(mes AS UNSIGNED), CONVERT(regional, UNSIGNED)";
+$mes = 3;
+$sqlPdf = "SELECT * FROM regionais WHERE mes IN (3,4) ORDER BY CAST(mes AS UNSIGNED), CONVERT(regional, UNSIGNED) ";
 $result = $conexao->query($sqlPdf);
 
 // CSS ORIGINAL (mantido conforme sua preferência)
@@ -60,7 +61,7 @@ $html = "
 </head>
 <body>
   
-  <h3 class='cabecalho'>IGREJA EVANGELICA ASSEMBLEIA DE DEUS <span>TRIMESTRE</span></h3>
+  <h3 class='cabecalho'>IGREJA EVANGELICA ASSEMBLEIA DE DEUS <span>MAR/ABR</span></h3>
   <h4>CAMPO 1. PR. RAUL CAVALCANTE BATISTA</h4>
   
   <table class='table table-striped'>
@@ -116,7 +117,7 @@ $sqlTotal = "SELECT
   SUM(mulheres_biblia) AS total_mdb, 
   SUM(trabalho_evangelistico) AS total_te, 
   SUM(oferta) AS total_ofertas 
-FROM regionais";
+FROM regionais WHERE mes IN (3,4)";
 
 $resultTotal = $conexao->query($sqlTotal);
 
